@@ -1,9 +1,13 @@
+import { useState } from "react";
+
+
 const Header = (props) => {
-  let add_btn_click = () => {
-    var myName = prompt("Title", "");
-    var myAge = prompt("Point:", "");
-    window.confirm(myName + " " + myAge + "/10");
-    props.AddAnime(myName, myAge);
+  let btn_status = true;
+
+  const [isActive, setActive] = useState(false);
+
+  const toggleClass = () => {
+    setActive(!isActive);
   };
 
   return (
@@ -12,11 +16,13 @@ const Header = (props) => {
         <h1 className="title">My anime List </h1>
       </div>
       <div className="btn_div">
-        <button className="add_btn" onClick={add_btn_click}>
+        <button className="add_btn" onClick={toggleClass}>
           ADD
         </button>
       </div>
-      <div className="menu"></div>
+      <div className={isActive ? "menu" : "menu menu_invisible"}>
+        
+      </div>
     </div>
   );
 };
